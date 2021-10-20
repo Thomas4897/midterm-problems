@@ -66,27 +66,59 @@ function containsUpperCase(str) {
 
 function containsNonAlphanumeric(str) {
 	let output = false;
+	let count = 0;
 
 	for (let i = 0; i < str.length; i++) {
 		const isLetter = isNaN(str[i]);
-		if (
-			isLetter === true ||
-			(isLetter === false && isLetter === true) ||
-			str[i] === " "
-		) {
+		if (isLetter === true || str[i] === " ") {
 			output = true;
 		}
 	}
 	return output;
 }
 
-function containsSpace() {}
+function containsSpace(str) {
+	return str.includes(" ");
+}
 
-function digits() {}
+function digits(num) {
+	let numStr = Math.abs(num).toString();
+	let output = [];
 
-function truncate() {}
+	if(numStr.length === 1){
+		output.push(Math.abs(num));
+	}
 
-function isValidPassword() {}
+	if(numStr.length >  1){
+		for(let i = 0; i < numStr.length; i++){
+			if(numStr[i] === "-" || numStr[i] === "." ){
+				// do nothing
+			} else {
+				output.push(Number(numStr[i]));
+			}
+		}
+	}
+
+	return output;
+}
+
+function truncate(str) {
+	let output = "";
+	if(str.length < 15){
+		output = str;
+	} else {
+		for(let i = 0; i < 8; i++){
+			output += str[i];
+	}
+	output += "..."
+}
+
+	return output;
+}
+
+function isValidPassword(str) {
+	
+}
 
 function onlyPunchy() {}
 
