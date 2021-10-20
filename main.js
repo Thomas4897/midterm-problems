@@ -69,14 +69,17 @@ function containsUpperCase(str) {
 
 function containsNonAlphanumeric(str) {
 	let output = false;
-	let specialChar = "!@#$%^&*()_|-=+~`:;><,.?'";
 
-	if(containsLowerCase(str) ||
-	containsUpperCase(str) ||
-	containsDigit(str)
+	for(const letter of str){
+	if(containsLowerCase(letter) === false &&
+	containsUpperCase(letter) === false &&
+	containsDigit(letter) === false &&
+	letter !== ""
 	){
 		output = true;
 	}
+}
+
 
 	return output;
 }
@@ -95,11 +98,9 @@ function digits(num) {
 
 	if(numStr.length >  1){
 		for(let i = 0; i < numStr.length; i++){
-			if(numStr[i] === "-" || numStr[i] === "." ){
-				// do nothing
-			} else {
+			if(!(numStr[i] === "-" || numStr[i] === ".") ){
 				output.push(Number(numStr[i]));
-			}
+			} 
 		}
 	}
 
@@ -131,15 +132,9 @@ function isValidPassword(str) {
 		output = true;
 	}
 
-	if(containsNonAlphanumeric(str) === false){
-		output = false;
-	}
-
 	if(containsSpace(str) === true){
 		output = false;
 	}
-
-
 
 	return output;
 }
@@ -148,8 +143,7 @@ function onlyPunchy(arr) {
 	let output = [];
 
 	for(let i = 0; i < arr.length; i++){
-		output.push(exclaim(arr[i]));
-		
+		output.push(exclaim(arr[i]));	
 	}
 
 	for(let i = 0; i < output.length; i++){
@@ -157,7 +151,6 @@ function onlyPunchy(arr) {
 		if(isLong(output[i]) === true){
 			output.splice(i, 1);
 		}
-		
 	}
 
 	return output;
