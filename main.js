@@ -60,7 +60,6 @@ function containsDigit(str) {
 }
 
 function containsLowerCase(str) {
-
 	return str.toUpperCase() != str;
 }
 
@@ -69,22 +68,15 @@ function containsUpperCase(str) {
 }
 
 function containsNonAlphanumeric(str) {
-	let output = true;
+	let output = false;
+	let specialChar = "!@#$%^&*()_|-=+~`:;><,.?'";
 
-	if(containsLowerCase(str) === true ||
-	containsUpperCase(str) === true ||
-	containsDigit(str) === true || 
-	str === ""){
-		output = false;
+	if(containsLowerCase(str) ||
+	containsUpperCase(str) ||
+	containsDigit(str)
+	){
+		output = true;
 	}
-
-	// if(containsLowerCase(str) === true &&
-	// containsUpperCase(str) === true &&
-	// containsDigit(str) === true && 
-	// str !== ""){
-	// 	output = true;
-	// }
-
 
 	return output;
 }
@@ -138,14 +130,6 @@ function isValidPassword(str) {
 	) {
 		output = true;
 	}
-
-	// if(containsUpperCase(str) === false ||
-	// containsLowerCase(str) === false ||
-	// containsDigit(str) === false ||
-	// containsNonAlphanumeric(str) === false
-	// ) {
-	// 	output = false;
-	// }
 
 	if(containsNonAlphanumeric(str) === false){
 		output = false;
