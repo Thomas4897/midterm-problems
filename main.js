@@ -47,16 +47,20 @@ function countWords(str) {
 function containsDigit(str) {
 	let output = false;
 
-	for (let i = 0; i < str.length; i++) {
+	for(let i = 0; i < str.length; i++){
 		const isLetter = isNaN(str[i]);
-		if (isLetter === false && str[i] !== " ") {
-			output = true;
-		}
+
+		if(isLetter === false && 
+			str[i] !== " "){
+				output = true;
+			}
 	}
+
 	return output;
 }
 
 function containsLowerCase(str) {
+
 	return str.toUpperCase() != str;
 }
 
@@ -65,15 +69,23 @@ function containsUpperCase(str) {
 }
 
 function containsNonAlphanumeric(str) {
-	let output = false;
-	let count = 0;
+	let output = true;
 
-	for (let i = 0; i < str.length; i++) {
-		const isLetter = isNaN(str[i]);
-		if (isLetter === true || str[i] === " ") {
-			output = true;
-		}
+	if(containsLowerCase(str) === true ||
+	containsUpperCase(str) === true ||
+	containsDigit(str) === true || 
+	str === ""){
+		output = false;
 	}
+
+	// if(containsLowerCase(str) === true &&
+	// containsUpperCase(str) === true &&
+	// containsDigit(str) === true && 
+	// str !== ""){
+	// 	output = true;
+	// }
+
+
 	return output;
 }
 
@@ -117,10 +129,55 @@ function truncate(str) {
 }
 
 function isValidPassword(str) {
+	let output = false;
 	
+	if(containsUpperCase(str) === true &&
+	containsLowerCase(str) === true &&
+	containsDigit(str) === true &&
+	containsNonAlphanumeric(str) === true
+	) {
+		output = true;
+	}
+
+	// if(containsUpperCase(str) === false ||
+	// containsLowerCase(str) === false ||
+	// containsDigit(str) === false ||
+	// containsNonAlphanumeric(str) === false
+	// ) {
+	// 	output = false;
+	// }
+
+	if(containsNonAlphanumeric(str) === false){
+		output = false;
+	}
+
+	if(containsSpace(str) === true){
+		output = false;
+	}
+
+
+
+	return output;
 }
 
-function onlyPunchy() {}
+function onlyPunchy(arr) {
+	let output = [];
+
+	for(let i = 0; i < arr.length; i++){
+		output.push(exclaim(arr[i]));
+		
+	}
+
+	for(let i = 0; i < output.length; i++){
+		
+		if(isLong(output[i]) === true){
+			output.splice(i, 1);
+		}
+		
+	}
+
+	return output;
+}
 
 module.exports = {
 	isEvenlyDivisible,
