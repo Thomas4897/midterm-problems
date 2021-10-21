@@ -60,11 +60,11 @@ function containsDigit(str) {
 }
 
 function containsLowerCase(str) {
-	return str.toUpperCase() != str;
+	return str.toUpperCase() !== str;
 }
 
 function containsUpperCase(str) {
-	return str.toLowerCase() != str;
+	return str.toLowerCase() !== str;
 }
 
 function containsNonAlphanumeric(str) {
